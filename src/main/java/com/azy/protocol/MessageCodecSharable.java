@@ -20,7 +20,7 @@ import java.util.List;
 @ChannelHandler.Sharable
 public class MessageCodecSharable extends MessageToMessageCodec<ByteBuf, Message> {
     @Override
-    protected void encode(ChannelHandlerContext ctx, Message msg, List<Object> outList) throws Exception {
+    protected void encode(ChannelHandlerContext ctx, Message msg, List<Object> outList) {
         ByteBuf out = ctx.alloc().buffer();
         // 1. 4 字节的魔数
         out.writeBytes(new byte[]{1, 2, 3, 4});
@@ -35,12 +35,10 @@ public class MessageCodecSharable extends MessageToMessageCodec<ByteBuf, Message
         // 无意义，对齐填充
         out.writeByte(0xff);
         // 6. 获取内容的字节数组
-//        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-//        ObjectOutputStream oos = new ObjectOutputStream(bos);
-//        oos.writeObject(msg);
-//        byte[] bytes = bos.toByteArray();
+        log.debug("编码{}",msg);
         byte[] bytes = Config.getSerializerAlgorithm().serialize(msg);
         // 7. 长度
+        log.debug("{}",bytes);
         out.writeInt(bytes.length);
         // 8. 写入内容
         out.writeBytes(bytes);
@@ -48,7 +46,7 @@ public class MessageCodecSharable extends MessageToMessageCodec<ByteBuf, Message
     }
 
     @Override
-    protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
+    protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out){
         int magicNum = in.readInt();
         byte version = in.readByte();
         byte serializerType = in.readByte();
@@ -58,11 +56,11 @@ public class MessageCodecSharable extends MessageToMessageCodec<ByteBuf, Message
         int length = in.readInt();
         byte[] bytes = new byte[length];
         in.readBytes(bytes, 0, length);
-//        ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(bytes));
-//        Message message = (Message) ois.readObject();
+
+
         Object message = Config.getSerializerAlgorithm().deserialize(Message.getMessageClass(messageType), bytes);
         log.debug("{}, {}, {}, {}, {}, {}", magicNum, version, serializerType, messageType, sequenceId, length);
-        log.debug("{}", message);
+        log.debug("解码{}", message);
         out.add(message);
     }
 }

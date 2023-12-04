@@ -2,6 +2,7 @@ package com.azy.config;
 
 import com.azy.serialize.Serializer;
 import com.azy.serialize.SerializerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,6 +11,7 @@ import java.util.Properties;
 /**
  * 2023-11-29 17:23:22
  */
+@Slf4j
 public abstract class Config {
     static Properties properties;
     static {
@@ -20,22 +22,14 @@ public abstract class Config {
             throw new ExceptionInInitializerError(e);
         }
     }
-    public static int getServerPort() {
-        String value = properties.getProperty("server.port");
-        if(value == null) {
-            return 8080;
-        } else {
-            return Integer.parseInt(value);
-        }
-    }
-    public static Serializer getSerializerAlgorithm() {
-//        String serializerType = properties.getProperty("serializer.algorithm");
-        return SerializerFactory.getSerializer();
 
-//        if(value == null) {
-//            return SerializerFactory.getSerializer(serializerType);
-//        } else {
-//            return SerializerFactory.getSerializer(serializerType);
-//        }
+    public static Serializer getSerializerAlgorithm() {
+        String serializerType = properties.getProperty("serializer.algorithm");
+        log.debug("序列化方式{}",serializerType);
+        if(serializerType == null) {
+            return SerializerFactory.getSerializer("json");
+        } else {
+            return SerializerFactory.getSerializer(serializerType);
+        }
     }
 }

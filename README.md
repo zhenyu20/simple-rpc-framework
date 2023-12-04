@@ -1,6 +1,6 @@
 # netty_chat
 利用netty实现了一个简单的聊天业务：
-```java
+```
 ==================================
 send [username] [content]
 gsend [group name] [content]
