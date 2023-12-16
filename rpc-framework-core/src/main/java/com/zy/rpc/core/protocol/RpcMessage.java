@@ -7,7 +7,6 @@ import lombok.Data;
  *
  * @author zy
  * @version 1.0
- * @Date 2023/1/4
  */
 @Data
 public class RpcMessage {

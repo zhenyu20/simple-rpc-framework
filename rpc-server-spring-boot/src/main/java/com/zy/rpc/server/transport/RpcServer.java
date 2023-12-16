@@ -5,8 +5,6 @@ package com.zy.rpc.server.transport;
  *
  * @author zy
  * @version 1.0
- * @ClassName RpcServer
- * @Date 2023/1/6 17:28
  */
 public interface RpcServer {
 
