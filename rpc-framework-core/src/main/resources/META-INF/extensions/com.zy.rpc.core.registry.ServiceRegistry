@@ -1,0 +1,2 @@
+zk=com.zy.rpc.core.registry.zk.ZookeeperServiceRegistry
+nacos=com.zy.rpc.core.registry.nacos.NacosServiceRegistry

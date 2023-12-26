@@ -1,0 +1,3 @@
+random=com.zy.rpc.core.loadbalance.impl.RandomLoadBalance
+roundRobin=com.zy.rpc.core.loadbalance.impl.RoundRobinLoadBalance
+consistentHash=com.zy.rpc.core.loadbalance.impl.ConsistentHashLoadBalance

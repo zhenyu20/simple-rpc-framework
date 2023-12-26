@@ -1,0 +1,5 @@
+protostuff=com.zy.rpc.core.serialization.protostuff.ProtostuffSerialization
+kryo=com.zy.rpc.core.serialization.kryo.KryoSerialization
+json=com.zy.rpc.core.serialization.json.JsonSerialization
+jdk=com.zy.rpc.core.serialization.jdk.JdkSerialization
+hessian=com.zy.rpc.core.serialization.hessian.HessianSerialization
