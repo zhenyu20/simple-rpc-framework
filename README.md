@@ -1,13 +1,10 @@
-# netty_chat
-利用netty实现了一个简单的聊天业务：
+# simple-rpc-framework
+利用netty + zookeeper/nacos + springboot实现一个简单的RPC框架：
 ```
-==================================
-send [username] [content]
-gsend [group name] [content]
-gcreate [group name] [m1,m2,m3...]
-gmembers [group name]
-gjoin [group name]
-gquit [group name]
-quit
-==================================
+rpc-server-spring-boot
+rpc-client-spring-boot
+rpc-framework-core
+sample-service-api
+sample-consumer
+sample-provider
 ```

@@ -7,12 +7,13 @@
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
-    <name>zy-rpc</name>
+    <name>simple-rpc</name>
     <url>http://maven.apache.org</url>
     <modules>
         <module>rpc-server-spring-boot</module>
         <module>rpc-client-spring-boot</module>
         <module>rpc-framework-core</module>
+        <module>sample-service-api</module>
     </modules>
 
     <properties>
